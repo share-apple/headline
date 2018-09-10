@@ -1,0 +1,84 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+}
+.main{
+    width:3.75rem ;
+    height: 3.48rem;
+}
+.toolbar{
+    width: 3.75rem;
+    height: 0.5rem;
+    background: #D43D3D;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    line-height: 0.5rem;
+    font-size: 0.18rem;
+}
+.toolbar a{
+    width:1.5rem ;
+    height:0.5rem ;
+    position: absolute;
+    left:1.1rem ;
+    top: 0;
+}
+.toolbar .backBtn{
+    display: block;
+    width:0.5rem ;
+    height:0.5rem ;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.toolbar .backBtn i{
+    font-size: 0.2rem;
+}
+.toolbar .backBtn a{
+    width:0.5rem ;
+    height:0.5rem ;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.controlBlock .controlTitle{
+    display: block;
+    width: 100%;
+    padding: 0 0.1rem;
+    font-size: 0.12rem;
+    line-height: 0.24rem;
+    background: #F5F5F5;
+}
+.controlBlock  .controlDetail{
+    width:100%;
+    height:100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0.1rem 0.1rem;
+}
+.controlDetail li{
+    width: 0.8rem;
+    height: 0.34rem;
+    border: 1px solid #CCCCCC;
+    margin-bottom: 0.05rem;
+
+}
+.controlDetail li a{
+    display: block;
+    font-size: 0.18rem;
+    text-align: center;
+    line-height: 0.34rem;
+}
+.controlBlock .removeTitle{
+    display: block;
+    width: 100%;
+    padding: 0 0.1rem;
+    font-size: 0.12rem;
+    line-height: 0.24rem;
+    background: #F5F5F5;
+}

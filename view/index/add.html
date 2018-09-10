@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>中台</title>
+    <link rel="stylesheet" href="/assert/index/css/add.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_791172_9i87w5mc21f.css">
+    <script src="/assert/index/js/rem.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/1.10.1/jquery.min.js"></script>
+</head>
+<body class="channels-container">
+<div class="main">
+    <div class="toolbar">频道管理
+            <a href=""></a>
+        <span class="backBtn">
+            <i class="iconfont icon-fanhui1 "></i>
+            <a href="/index.php?c=page&&m=index"></a>
+        </span>
+    </div>
+        <div class="addControl controlBlock" id="top">
+        <span class="controlTitle">点击删除以下频道</span>
+        <ul class="controlDetail" id="ul-del">
+            <?php foreach ($yes as $k=>$v){?>
+            <li class="channelFigure" id="<?php echo $v['id'] ?>"   data-id="<?php echo $v['is_default'] ?>">
+                <a  href="index.php?c=page&m=add" class="remove">
+                    <?php echo $v['name']?>
+                </a>
+            </li>
+            <?php }?>
+        </ul>
+        </div>
+    <div class="addControl controlBlock" id="bottom">
+        <span class="removeTitle">点击添加以下频道</span>
+        <ul class="controlDetail " id="ul-add">
+            <?php foreach ($no as $k=>$v){?>
+            <li class="channelFigure" id="<?php echo $v['id'] ?>" data-id="<?php echo $v['is_default'] ?>">
+                <a  href="index.php?c=page&m=add" class="remove">
+                    <?php echo $v['name']?>
+                </a>
+            </li>
+            <?php }?>
+        </ul>
+    </div>
+
+</div>
+</body>
+<script>
+    $(function () {
+
+        $('.channelFigure').each(function (k,v) {
+            if ($(v).attr('data-id')==0){
+                $(v).appendTo('.ul-add');
+            }else if($(v).attr('data-id')==1){
+                $(v).appendTo('.ul-del');
+            }
+        });
+        $('#top').on('click','.channelFigure',function (v) {
+            $.ajax({
+                url:'/index.php?c=page&m=move',
+                data:{
+                    is_default:0,
+                    id:$(this).attr('id')
+                },
+                success(data){
+                    location.reload();
+
+                }
+
+            })
+        });
+        $('#bottom').on('click','.channelFigure',function (v) {
+            $.ajax({
+                url:'/index.php?c=page&m=move',
+                data:{
+                    is_default:1,
+                    id:$(this).attr('id')
+                },
+                success(data){
+                    location.reload();
+
+                }
+
+            })
+        });
+    })
+</script>
+</html>

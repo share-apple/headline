@@ -1,0 +1,45 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+}
+.list_content{
+
+}
+.has_box{
+    width: 100%;
+    height: 5rem;
+    background: white;
+    padding:0 0.3rem ;
+
+}
+.has_box a{
+    height: 5rem;
+    display: block;
+    padding:0.32rem  0;
+    border-bottom: 1px solid #DEDEDE;
+}
+.has_box .item_box{
+      width: 100%;
+    height: 100%;
+    position: relative;
+
+}
+.item_box h3{
+    font-size: 0.18rem;
+    padding: 0.1rem 0.2rem;
+    position: absolute;
+}
+.item_box img{
+    width: 100%;
+    height: 90%;
+}
+.item_box .item_info{
+    position: absolute;
+    top: 3.2rem;
+}
+.item_box .item_info span{
+    font-size: 0.12rem;
+}

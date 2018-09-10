@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+</head>
+<body>
+  <ul id="ul">
+    <?php foreach($results as $k => $v){ ?>
+    <li><?php echo $v['title']?></li>
+    <?php } ?>
+  </ul>
+  <button id="loadmore">加载更多</button>
+<script>
+  var page = 1;
+  $(function () {
+     $('#loadmore').click(function(){
+       $.ajax({
+         url:'/index.php?c=page&m=searchList&s=<?php echo $keyword?>',
+         data:{
+           page: page + 1
+         },
+         success:function(data){
+           page = page + 1;
+           data = JSON.parse(data);
+           if(data.length){
+             data.forEach(v=>{
+               $(`<li>${v.title}</li>`)
+                 .appendTo('#ul');
+             })
+           }else{
+             alert('没有更多')
+           }
+         }
+       })
+     })
+  })
+</script>
+</body>
+</html>

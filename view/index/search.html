@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>搜索</title>
+    <link rel="stylesheet" href="/assert/index/css/search.css">
+    <script src="/assert/index/js/rem.js"></script>
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_791172_w9qemz1nsu.css">
+    <script src="https://cdn.bootcss.com/jquery/1.10.1/jquery.min.js"></script>
+
+</head>
+<body>
+<div class="box">
+    <div class="arrowup"></div>
+    <ul class="navigation-categories">
+        <li><a href="">新闻</a></li>
+        <li><a href="">神马</a></li>
+        <li><a href="">百度</a></li>
+    </ul>
+</div>
+<div class="top_bar">
+    <div class="abs_l">
+        <a class="btn back" href="/index.php?c=page&&m=index"></a>
+        <i class="iconfont icon-fanhui1 "></i>
+    </div>
+    <div class="abs_m">搜索</div>
+</div>
+<div class="search_content">
+    <a href="#" class="change">
+        <i class="iconfont icon-xiaotuziCduan_">
+        </i>
+    </a>
+    <img src="/assert/index/img/2018-08-15_112803.jpg" alt="">
+    <!--<form action="/index.php">可以用form但是要加其他的input显示资源-->
+        <!--<input type="hidden" name="c" value="page">-->
+        <!--<input type="hidden" name="m" value="search">-->
+        <!--<input type="text" name="wd">-->
+        <!--<button type="submit">搜索</button>-->
+    <form action="/index.php">
+        <input type="hidden" name="c" value="page">
+        <input type="hidden" name="m" value="search">
+        <input type="text" placeholder="请输入搜索关键词" class="search_input" id="keyword" name="s" style="padding-left: 50px">
+        <button type="submit" style="font-size: 0.18rem;position: fixed; z-index: 999;top:49px;right: 6px; ">搜索</button>
+    </form>
+    <?php if( $total_number == 0 ){ ?>
+    <div style="font-size: 0.18rem ;position: fixed;z-index: 888;top:1rem; left:0.8rem; " >抱歉 没有找到你想要的结果</div>
+    <?php } ?>
+    <?php if( $total_number != 0 ){ ?>
+    <div id="num" style="font-size: 0.18rem;position: fixed; z-index: 999;top:51px;right: 57px; ">共 <?php  echo $total_number ?>条结果</div>
+    <?php } ?>
+
+    <div class="hot_words">
+    <ul class="toutiao">
+        <?php foreach($results as $k => $v){ ?>
+        <li class=""><?php echo $v['title']?>
+            <a href="" class="hot_words_link"></a>
+        </li>
+        <?php } ?>
+    </ul>
+        <?php if ( $total_number > 4 ){ ?>
+        <button id="more" style="font-size: 0.18rem ;position: fixed;z-index: 888;top:600px; left:130px;">加载更多</button>
+        <?php } ?>
+</div>
+</div>
+<script>
+    var page = 1;
+    $(function () {
+        let box=$('.hot_words');
+         box.on('click','#more',function () {
+             $.ajax({
+                 url:'/index.php?c=page&m=searchList&s=<?php echo $key ?>',
+                 data:{
+                     page: page + 1
+                 },
+                 success:function (data) {
+                     page = page + 1;
+                     data = JSON.parse(data);
+                     console.log(data);
+                     if(data.length){
+                     data.forEach(v=>{
+                      $(`<li>${v.title}</li>`)
+                      .appendTo('.toutiao');
+                                       })
+                     }else{
+                         alert('没有更多');
+
+                     }
+                     console.log(data);
+                 }
+             })
+
+         });
+    });
+
+
+</script>
+</body>
+</html>
+<script src="/assert/index/js/search.js"></script>

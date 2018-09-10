@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+<?php foreach($category as $k => $v) {?>
+<li class="<?php echo $v['id'] == $cid?'active':'' ?>">
+  <a href="/index.php?c=page&m=index&cid=<?php echo $v['id'] ?>&page=1">
+    <?php echo $v['name'] ?>
+  </a>
+</li>
+<?php } ?>
+<!--利用这个结构判断-->
+  <?php if() {?>
+  <?php }?>
+</body>
+</html>

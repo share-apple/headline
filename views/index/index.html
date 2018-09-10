@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title></title>
+  <script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+  <script src="/assets/public/jquery.twbsPagination.min.js"></script>
+  <link rel="stylesheet" href="/assets/index/css/index.css">
+  <link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <ul style="display:flex;">
+    <?php foreach($category as $k => $v) {?>
+    <li class="<?php echo $v['id'] == $cid?'active':'' ?>">
+      <a href="/index.php?c=page&m=index&cid=<?php echo $v['id'] ?>&page=1">
+        <?php echo $v['name'] ?>
+      </a>
+    </li>
+    <?php } ?>
+  </ul>
+  <ul>
+    <?php foreach($news as $k => $v) {?>
+    <li><?php echo $v['title'] ?></li>
+    <?php } ?>
+  </ul>
+  总条数:
+  <?php echo $num?>
+  <ul id="pagination-demo" class="pagination-sm"></ul>
+
+<script>
+  $(function(){
+    $('#pagination-demo').twbsPagination({
+      totalPages: <?php echo $page_total?>,
+      visiblePages: 3,
+        startPage:<?php echo $page?>,
+      onPageClick: function (event, page) {
+        console.log(page);
+        if(page != <?php echo $page?>){
+          location.href="/index.php?c=page&m=index&cid=<?php echo $cid?>&page="+page;
+        }
+      }
+    });
+  })
+</script>
+</body>
+</html>

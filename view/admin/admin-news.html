@@ -1,0 +1,146 @@
+<?php include '../view/admin/admin-header.html'?>
+
+<!-- MAIN -->
+
+<div class="main">
+    <div class="panel">
+        <div class="panel-heading">
+            <h3 class="panel-title ">新闻管理页面</h3>
+        </div>
+        <div class="panel-body no-padding">
+            <table class="table">
+<!--标题分类-->
+                <thead>
+                <tr>
+                    <th class="text-success">
+                       id
+                    </th>
+                    <th class="text-success">
+                        cid
+                    </th>
+                    <th class="text-success">
+                        mold
+                    </th>
+                    <th class="text-success">
+                        title
+                    </th>
+                    <th class="text-success">
+                       dsc
+                    </th>
+                    <th class="text-success">
+                        image
+                    </th>
+                    <th class="text-success">
+                        url
+                    </th>
+                    <th class="text-success">
+                        pubtime
+                    </th>
+                    <th class="text-success">
+                        content
+                    </th>
+                    <th class="text-success">delete</th>
+                </tr>
+                </thead>
+
+<!--数据类型-->
+
+                <tbody id="tbody">
+                <?php foreach($course as $k=>$v){?>
+                <tr data-id="<?php echo $v['id']?>">
+                   <td>
+                       <input type="text" data-type='id' class="form-control" placeholder="<?php echo $v['id']?>" >
+                   </td>
+                    <td>
+                        <input type="text" data-type='cid' class="form-control" placeholder="<?php echo $v['cid']?>" >
+                    </td>
+                    <td>
+                        <input type="text" data-type='mold' class="form-control" placeholder="<?php echo $v['mold']?>" >
+                    </td>
+
+                    <td id="title">
+                        <input type="text" data-type='title' class="form-control" placeholder="<?php echo $v['title']?>" >
+                    </td>
+
+                    <td>
+                        <input type="text" data-type='dsc' class="form-control" placeholder="<?php echo $v['dsc']?>" >
+                    </td>
+                    <td>
+                        <input type="text" data-type='image' class="form-control" placeholder="<?php echo $v['image']?>" >
+                    </td>
+                    <td>
+                        <input type="text" data-type='url' class="form-control" placeholder="<?php echo $v['url']?>" >
+                    </td>
+                    <td>
+                        <input type="text" data-type='pubtime' class="form-control" placeholder="<?php echo $v['pubtime']?>" >
+                    </td>
+                    <td>
+                        <input type="text" data-type='content' class="form-control" placeholder="<?php echo 11111 ?>" >
+                    </td>
+                    <td>
+                        <button type="button" class="remove btn btn-danger"><i class="fa fa-trash-o"></i> 删除</button>
+                    </td>
+                </tr>
+                <?php }?>
+                </tbody>
+            </table>
+
+<!--新增按钮-->
+            <button type="button" class="btn btn-success" id="add"><i class="fa fa-plus-square"></i>  新增 </button>
+<!--点击加载缓冲-->
+            <div class="spinner" id="progress" style="display:none">
+                <div class="double-bounce1"></div>
+                <div class="double-bounce2"></div>
+            </div>
+<!--引入的分类页按钮-->
+            <div  class="bottom">
+                <!--<?php echo  $num  ?>-->
+                <ul id="pagination-demo" class="pagination-sm">
+                </ul>
+                <span class="finish">总页数：<?php  echo $page_total ?></span>
+            </div>
+<!--分类页按钮实现的前后页功能-->
+            <script>
+                $(function(){
+                    $('#pagination-demo').twbsPagination({
+                        totalPages: <?php echo $page_total?>,
+                    visiblePages: 4,
+                        startPage:<?php echo $page?>,
+                    onPageClick: function (event, page) {
+                        if(page != <?php echo $page?>){
+                            location.href="/admin.php?c=news&m=index&cid=<?php echo $cid?>&page="+page;
+                        }
+                    }
+                });
+                })
+            </script>
+<!--js+from实现搜索功能-->
+            <script>
+                $(function () {
+               let search=$('#search');
+               console.log(search);
+                    search.click(function () {
+                        $.ajax({
+                            url:'/news.php?c=news&m=search&s=<?php echo $key ?>',
+
+                            success:function (data) {
+                                $("#title").html(data);
+                        }
+                    })
+
+
+
+
+
+
+
+
+                })
+            </script>
+        </div>
+    </div>
+</div>
+<script src="/assert/admin/public/news.js"></script>
+<!-- END MAIN -->
+
+<?php include '../view/admin/admin-footer.html'?>

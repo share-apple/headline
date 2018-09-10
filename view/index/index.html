@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>推荐</title>
+    <link rel="stylesheet" href="/assert/index/css/index.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_791172_o99k56cwhtb.css">
+    <script src="/assert/index/js/rem1.js"></script>
+
+</head>
+<body>
+<header>
+    <div class="bigbox ">
+        <div class="popup">
+            <div class="banner"></div>
+            <p>已加载好您感兴趣的头条</p>
+            <div class="download-btn " data-node="downloadBtn">立即打开</div>
+            <div class="close" data-node="close">
+                X
+            </div>
+        </div>
+    </div>
+    <div class="top_bar">
+        <div class="abs_m">今日头条
+            <a href=""></a>
+            <div class="refreshBtn-container">
+                <i class="iconfont icon-fanhui"></i>
+            </div>
+        </div>
+        <div class="abs_l">
+            <i class="iconfont icon-xinfeng-copy"></i>
+            <a href="" class="msg-box"></a>
+        </div>
+        <div class="abs_r">
+            <i class="iconfont icon-sousuo"></i>
+            <a href="/index.php?c=page&&m=search" class="btn search"></a>
+        </div>
+    </div>
+</header>
+<div class="recommend ">为你推荐9篇文章</div>
+<div class="top_menu_bar">
+    <ul class="top_menu_list">
+            <?php foreach ($array as $k=>$v){?>
+            <li class="<?php echo $v['id']==$cid?'active':'' ?>">
+                <a href="index.php?c=page&m=index&cid=<?php echo $v['id'] ?>">
+                    <?php echo $v['name'] ?>
+                </a>
+            </li>
+            <?php }?>
+        <li></li>
+    </ul>
+    <div class="top_menu_more">
+        <a href="/index.php?c=page&&m=add" ></a>
+        <i class="iconfont icon-iconjia"></i>
+    </div>
+</div>
+<div class="list_content">
+
+
+    <!--第1种类型-->
+    <?php foreach ($course as $k=>$v){?>
+<?php  if($v['mold']==1) {?>
+    <section class="has_action" >
+        <a href=""></a>
+        <div class="item_detail">
+            <h3 class="dotdot line3" data-id="">
+                    <?php echo $v['title'] ?>
+            </h3>
+        <ul class="item_info">
+           <li>置顶</li>
+            <li>党建网微平台</li>
+            <li>评论 73</li>
+            <li >
+                <?php echo $v['pubtime'] ?>
+            </li>
+        </ul>
+        </div>
+    </section>
+    <?php }?>
+    <?php }?>
+
+
+    <!--第2种类型-->
+    <?php foreach ($course as $k=>$v){?>
+    <?php  if($v['mold']==2) {?>
+    <section class="middle_mode has_action"  >
+        <a href=""></a>
+        <div class="item_detail">
+            <h3 class="dotdot line3" data-id="">
+                <?php echo $v['title'] ?>
+            </h3>
+            <ul class="item_info">
+                <li>置顶</li>
+                <li>党建网微平台</li>
+                <li><?php echo $v['pubtime'] ?></li>
+            </ul>
+        </div>
+        <div class="list_img_holder">
+            <!--<img src="https://p3.pstatp.com/list/pgc-image/15342040264340bea0cb534" alt="">-->
+            <img src="<?php echo $v['image']?>" alt="">
+        </div>
+    </section>
+    <?php }?>
+    <?php }?>
+
+
+    <!--第3种类型-->
+    <?php foreach ($course as $k=>$v){?>
+    <?php  if($v['mold']==3) {?>
+    <section class="has_action" >
+        <a href=""></a>
+        <div class="item_detail">
+            <h3><?php echo $v['title'] ?></h3>
+            <div class="list_image">
+            <ul class="clearfix">
+                <li class="list_img_holder" >
+                    <img src="<?php echo $v['image']?>" alt="">
+                </li>
+                <li>
+                    <img src="<?php echo $v['image']?>" alt="">
+                </li>
+                <li>
+                    <img src="<?php echo $v['image']?>" alt="">
+                </li>
+            </ul>
+                <ul class="item_info">
+                    <li>热</li>
+                    <li>党建网微平台</li>
+                    <li>评论 73</li>
+                    <li><?php echo $v['pubtime'] ?></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <?php }?>
+    <?php }?>
+
+    <!--第四种类型-->
+
+    <section class="has_action" >
+        <a href=""></a>
+        <div class="item_detail">
+            <h3>
+                818相聚奇瑞香山店，七重好礼限时拿全城钜惠惊喜不断
+            </h3>
+            <div class="list_img_holder_large ">
+                <img src="http://sf1-ttcdn-tos.pstatp.com/img/web.business.image/201808115d0d89b378b75f934be7a411~640x0.image" alt="">
+            </div>
+                <ul class="item_info">
+                    <li class="blue">广告</li>
+                    <li>党建网微平台</li>
+                    <li>评论 73</li>
+                    <li>2小时前</li>
+                </ul>
+        </div>
+    </section>
+</div>
+</body>
+<script src="/assert/index/js/index.js"></script>
+</html>
